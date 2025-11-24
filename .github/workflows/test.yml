@@ -8,12 +8,12 @@ on:
 
 jobs:
   test-legacy-python:
-    name: Test on Python ${{ matrix.python-version }} (Ubuntu 20.04)
-    runs-on: ubuntu-20.04
+    name: Test on Python ${{ matrix.python-version }} (Ubuntu 22.04)
+    runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
       matrix:
-        python-version: ['3.6', '3.7']
+        python-version: ['3.7']
 
     steps:
     - uses: actions/checkout@v4
