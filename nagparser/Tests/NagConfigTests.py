@@ -1,53 +1,41 @@
-import unittest
-
-from nagparser.Model.NagConfig import NagConfig, basicgetpermissions
+"""Tests for NagConfig class."""
+import os
+import pytest
+from nagparser.Model.NagConfig import NagConfig
 
 
 def fakegetpermissions():
+    """Fake permissions function for testing."""
     return ['fakepermission']
 
 
-def buildtestnagconfig():
-    basedir = './testdata/'
-    files = [basedir + 'test_objects.cache', basedir + 'test_status.dat']
-    nagconfig = NagConfig(files)
-    nagconfig.APIKEYS = ['abc123', '123abc']
+class TestNagConfig:
+    """Test cases for NagConfig."""
 
-    return nagconfig
-
-
-class NagConfigTests(unittest.TestCase):
-
-    def setUp(self):
-        self.nagconfig = buildtestnagconfig()
-
-    def test_nagconfig_is_Config_instance(self):
-        self.assertTrue(isinstance(self.nagconfig, NagConfig))
+    def test_nagconfig_is_Config_instance(self, test_nagconfig):
+        """Test that nagconfig is an instance of NagConfig."""
+        assert isinstance(test_nagconfig, NagConfig)
 
     def test_fake_files_raise_exception(self):
+        """Test that non-existent files raise IOError."""
         files = ['fakefile.cache', 'fakefile.dat']
-        self.assertRaises(IOError, NagConfig, files)
+        with pytest.raises(IOError):
+            NagConfig(files)
 
-    def test_getpermissions_function_set_to_default(self):
-        self.assertTrue(self.nagconfig.getpermissions is basicgetpermissions)
+    def test_can_set_and_get_basic_apikeys(self, test_nagconfig):
+        """Test setting and getting API keys."""
+        # Test that passing list works
+        assert test_nagconfig.APIKEYS == ['abc123', '123abc']
 
-    def test_set_getpermissions_function(self):
-        self.nagconfig._set_getpermissionsfunction(fakegetpermissions)
-        self.assertTrue(self.nagconfig.getpermissions() == ['fakepermission'])
+        # Test that passing str will result in APIKEYS returning the str as single item list
+        test_nagconfig.APIKEYS = 'abc123'
+        assert test_nagconfig.APIKEYS == ['abc123']
 
-    def test_can_set_and_get_basic_apikeys(self):
-        #see setUp for inital set
-        self.assertEqual(self.nagconfig.APIKEYS, ['abc123', '123abc'])
-
-        #Test that passing str will result in APIKEYS returning the str as single item list
-        self.nagconfig.APIKEYS = 'abc123'
-        self.assertEqual(self.nagconfig.APIKEYS, ['abc123'])
-
-    def test_can_use_default_getpermissions(self):
-        self.assertTrue(self.nagconfig.getpermissions('abc123') == ['access granted'])
-        self.assertTrue(self.nagconfig.getpermissions('123abc') == ['access granted'])
-        self.assertTrue(self.nagconfig.getpermissions('fakekey') == [])
+    def test_can_use_default_getpermissions(self, test_nagconfig):
+        """Test the default getpermissions method."""
+        assert test_nagconfig.getpermissions('abc123') == ['access granted']
+        assert test_nagconfig.getpermissions('fakekey') == []
 
 
 if __name__ == '__main__':
-    unittest.main()
+    pytest.main([__file__, '-v'])

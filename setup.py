@@ -5,11 +5,7 @@ VERSION_MINOR = 0
 VERSION_PATCH = 31
 versionstr = '%s.%s.%s' % (VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH)
 
-# only supporting python2.x at the moment, will support 3.x once the project matures a bit
-#if sys.version_info[0] == 2:
-#    base_dir = 'python2'
-#elif sys.version_info[0] == 3:
-#    base_dir = 'python3'
+# Supporting Python 3.x
 
 setup(
     name='NagParser',
@@ -33,9 +29,12 @@ setup(
               'Natural Language :: English',
               'Operating System :: OS Independent',
               'Programming Language :: Python',
-              'Programming Language :: Python :: 2',
-              'Programming Language :: Python :: 2.6',
-              'Programming Language :: Python :: 2.7',
+              'Programming Language :: Python :: 3',
+              'Programming Language :: Python :: 3.8',
+              'Programming Language :: Python :: 3.9',
+              'Programming Language :: Python :: 3.10',
+              'Programming Language :: Python :: 3.11',
+              'Programming Language :: Python :: 3.12',
               'Topic :: Software Development :: Libraries :: Python Modules',
               'Topic :: Utilities'
               ],
