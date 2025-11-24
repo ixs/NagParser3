@@ -7,6 +7,35 @@ from nagparser.Model import Nag, Host, Service, ServiceGroup
 
 
 def parse(config):
+    """Parse Nagios status and cache files into a Nag object.
+    
+    This is the main entry point for NagParser. It reads Nagios runtime data from
+    status.dat and objects.cache files and constructs a hierarchical object structure
+    containing hosts, services, and service groups.
+    
+    Args:
+        config (NagConfig): Configuration object containing file paths and options.
+                           Must have a 'files' attribute with paths to status.dat
+                           and/or objects.cache files.
+    
+    Returns:
+        Nag: A Nag object containing all parsed hosts, services, and service groups.
+             The returned object provides access to:
+             - nag.hosts: NagList of Host objects
+             - nag.services: NagList of Service objects
+             - nag.servicegroups: NagList of ServiceGroup objects
+    
+    Raises:
+        Exception: If an invalid filename is detected (must contain '.cache' or '.dat')
+        IOError: If specified files don't exist (raised by NagConfig)
+    
+    Example:
+        >>> from nagparser import parse, NagConfig
+        >>> config = NagConfig(files=['/var/lib/nagios3/objects.cache',
+        ...                           '/var/lib/nagios3/status.dat'])
+        >>> nag = parse(config)
+        >>> print(f"Found {len(nag.hosts)} hosts and {len(nag.services)} services")
+    """
     tempobjs = []
     files = config.files
     importantservicegroups = config.IMPORTANTSERVICEGROUPS

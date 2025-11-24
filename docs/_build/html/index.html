@@ -1,109 +1,958 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" data-content_root="./">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Welcome to NagParser’s documentation! &#8212; NagParser 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css?v=2bf1fcf8" />
     
-    <title>Welcome to NagParser’s documentation! &mdash; NagParser v0.1.0 documentation</title>
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '#',
-        VERSION:     '0.1.0',
-        COLLAPSE_MODINDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="NagParser v0.1.0 documentation" href="#" /> 
-  </head>
-  <body>
-    <div class="related">
+    <script src="_static/documentation_options.js?v=01f34227"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li><a href="#">NagParser v0.1.0 documentation</a> &raquo;</li> 
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">NagParser 0.1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Welcome to NagParser’s documentation!</a></li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
-  <div class="section" id="welcome-to-nagparser-s-documentation">
-<h1>Welcome to NagParser&#8217;s documentation!<a class="headerlink" href="#welcome-to-nagparser-s-documentation" title="Permalink to this headline">¶</a></h1>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Empty template at the moment, will be adding documentation very, very soon.</p>
+  <section id="welcome-to-nagparser-s-documentation">
+<h1>Welcome to NagParser’s documentation!<a class="headerlink" href="#welcome-to-nagparser-s-documentation" title="Link to this heading">¶</a></h1>
+<p>NagParser is a Python library for parsing Nagios runtime data from <code class="docutils literal notranslate"><span class="pre">status.dat</span></code> and
+<code class="docutils literal notranslate"><span class="pre">objects.cache</span></code> files and presenting it as easy-to-use Python objects. It enables you to
+build custom monitoring dashboards, reporting tools, and automation scripts that integrate
+with your Nagios infrastructure.</p>
+<section id="key-features">
+<h2>Key Features<a class="headerlink" href="#key-features" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Parse Nagios Runtime Data</strong>: Read and interpret Nagios status data from status.dat files</p></li>
+<li><p><strong>Object-Oriented Interface</strong>: Work with intuitive Python objects representing Hosts, Services, and ServiceGroups</p></li>
+<li><p><strong>Status Aggregation</strong>: Automatically aggregate service statuses across hosts and service groups</p></li>
+<li><p><strong>Flexible Configuration</strong>: Customize behavior with configuration options for stale data, hard states, and more</p></li>
+<li><p><strong>Time Utilities</strong>: Built-in helpers for handling timestamps and human-readable time differences</p></li>
+</ul>
+</section>
+<section id="quick-start">
+<h2>Quick Start<a class="headerlink" href="#quick-start" title="Link to this heading">¶</a></h2>
+<section id="installation">
+<h3>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h3>
+<p>Install NagParser using pip:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">NagParser</span>
+</pre></div>
 </div>
+</section>
+<section id="basic-usage">
+<h3>Basic Usage<a class="headerlink" href="#basic-usage" title="Link to this heading">¶</a></h3>
+<p>Here’s a simple example to get started:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nagparser</span> <span class="kn">import</span> <span class="n">parse</span><span class="p">,</span> <span class="n">NagConfig</span>
+
+<span class="c1"># Configure file paths</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">NagConfig</span><span class="p">(</span><span class="n">files</span><span class="o">=</span><span class="p">[</span>
+    <span class="s1">&#39;/var/lib/nagios3/objects.cache&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;/var/lib/nagios3/status.dat&#39;</span>
+<span class="p">])</span>
+
+<span class="c1"># Parse the files</span>
+<span class="n">nag</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+
+<span class="c1"># Access hosts and services</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total hosts: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">nag</span><span class="o">.</span><span class="n">hosts</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total services: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">nag</span><span class="o">.</span><span class="n">services</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get the first host</span>
+<span class="n">host</span> <span class="o">=</span> <span class="n">nag</span><span class="o">.</span><span class="n">hosts</span><span class="o">.</span><span class="n">first</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Host: </span><span class="si">{</span><span class="n">host</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Host status: </span><span class="si">{</span><span class="n">host</span><span class="o">.</span><span class="n">status</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Iterate through services</span>
+<span class="k">for</span> <span class="n">service</span> <span class="ow">in</span> <span class="n">host</span><span class="o">.</span><span class="n">services</span><span class="p">:</span>
+    <span class="n">status</span><span class="p">,</span> <span class="n">in_downtime</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">status</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Service: </span><span class="si">{</span><span class="n">service</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">, Status: </span><span class="si">{</span><span class="n">status</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="working-with-service-groups">
+<h3>Working with Service Groups<a class="headerlink" href="#working-with-service-groups" title="Link to this heading">¶</a></h3>
+<p>Service groups help organize related services:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nagparser</span> <span class="kn">import</span> <span class="n">parse</span><span class="p">,</span> <span class="n">NagConfig</span>
+
+<span class="n">config</span> <span class="o">=</span> <span class="n">NagConfig</span><span class="p">(</span><span class="n">files</span><span class="o">=</span><span class="p">[</span>
+    <span class="s1">&#39;/var/lib/nagios3/objects.cache&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;/var/lib/nagios3/status.dat&#39;</span>
+<span class="p">])</span>
+<span class="n">nag</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+
+<span class="c1"># Get all service groups</span>
+<span class="n">servicegroups</span> <span class="o">=</span> <span class="n">nag</span><span class="o">.</span><span class="n">getservicegroups</span><span class="p">(</span><span class="n">onlyimportant</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">sg</span> <span class="ow">in</span> <span class="n">servicegroups</span><span class="p">:</span>
+    <span class="n">status</span><span class="p">,</span> <span class="n">in_downtime</span> <span class="o">=</span> <span class="n">sg</span><span class="o">.</span><span class="n">status</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">sg</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">status</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">sg</span><span class="o">.</span><span class="n">services</span><span class="p">)</span><span class="si">}</span><span class="s2"> services)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="filtering-services-by-status">
+<h3>Filtering Services by Status<a class="headerlink" href="#filtering-services-by-status" title="Link to this heading">¶</a></h3>
+<p>Find problematic services easily:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nagparser</span> <span class="kn">import</span> <span class="n">parse</span><span class="p">,</span> <span class="n">NagConfig</span>
+
+<span class="n">config</span> <span class="o">=</span> <span class="n">NagConfig</span><span class="p">(</span><span class="n">files</span><span class="o">=</span><span class="p">[</span>
+    <span class="s1">&#39;/var/lib/nagios3/objects.cache&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;/var/lib/nagios3/status.dat&#39;</span>
+<span class="p">])</span>
+<span class="n">nag</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+
+<span class="c1"># Find all critical services</span>
+<span class="n">critical_services</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">nag</span><span class="o">.</span><span class="n">services</span>
+                    <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">status</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;critical&#39;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Critical services: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">critical_services</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">service</span> <span class="ow">in</span> <span class="n">critical_services</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">service</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">service</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="configuration-options">
+<h3>Configuration Options<a class="headerlink" href="#configuration-options" title="Link to this heading">¶</a></h3>
+<p>Customize NagParser behavior with configuration options:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nagparser</span> <span class="kn">import</span> <span class="n">NagConfig</span>
+
+<span class="n">config</span> <span class="o">=</span> <span class="n">NagConfig</span><span class="p">(</span><span class="n">files</span><span class="o">=</span><span class="p">[</span>
+    <span class="s1">&#39;/var/lib/nagios3/objects.cache&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;/var/lib/nagios3/status.dat&#39;</span>
+<span class="p">])</span>
+
+<span class="c1"># Set stale data threshold (seconds)</span>
+<span class="n">config</span><span class="o">.</span><span class="n">STALE_THRESHOLD</span> <span class="o">=</span> <span class="mi">300</span>
+
+<span class="c1"># Ignore stale data in status calculations</span>
+<span class="n">config</span><span class="o">.</span><span class="n">IGNORE_STALE_DATA</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># Require hard service states (ignore soft states)</span>
+<span class="n">config</span><span class="o">.</span><span class="n">REQUIRE_HARD_SERVICE_STATUS</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># Configure API keys for authentication</span>
+<span class="n">config</span><span class="o">.</span><span class="n">APIKEYS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;your-api-key&#39;</span><span class="p">]</span>
+
+<span class="c1"># Custom datetime format</span>
+<span class="n">config</span><span class="o">.</span><span class="n">DATETIME_FORMAT</span> <span class="o">=</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="working-with-timestamps">
+<h3>Working with Timestamps<a class="headerlink" href="#working-with-timestamps" title="Link to this heading">¶</a></h3>
+<p>NagParser includes utilities for working with time data:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nagparser</span> <span class="kn">import</span> <span class="n">parse</span><span class="p">,</span> <span class="n">NagConfig</span>
+<span class="kn">from</span> <span class="nn">nagparser</span> <span class="kn">import</span> <span class="n">getnicetimefromdatetime</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+
+<span class="n">config</span> <span class="o">=</span> <span class="n">NagConfig</span><span class="p">(</span><span class="n">files</span><span class="o">=</span><span class="p">[</span>
+    <span class="s1">&#39;/var/lib/nagios3/objects.cache&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;/var/lib/nagios3/status.dat&#39;</span>
+<span class="p">])</span>
+<span class="n">nag</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+
+<span class="c1"># Get human-readable time since generation</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Data generated: </span><span class="si">{</span><span class="n">nag</span><span class="o">.</span><span class="n">generated</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Last updated: </span><span class="si">{</span><span class="n">nag</span><span class="o">.</span><span class="n">lastupdated</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Convert datetime to human-readable format</span>
+<span class="n">some_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">minutes</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">nice_time</span> <span class="o">=</span> <span class="n">getnicetimefromdatetime</span><span class="p">(</span><span class="n">some_time</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Time ago: </span><span class="si">{</span><span class="n">nice_time</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># Outputs: &quot;2h 30m&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="api-reference">
+<h2>API Reference<a class="headerlink" href="#api-reference" title="Link to this heading">¶</a></h2>
 <p>Contents:</p>
-<ul class="simple">
-</ul>
+<div class="toctree-wrapper compound">
 </div>
-<div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li><a class="reference external" href="genindex.html"><em>Index</em></a></li>
-<li><a class="reference external" href="modindex.html"><em>Module Index</em></a></li>
-<li><a class="reference external" href="search.html"><em>Search Page</em></a></li>
-</ul>
+<section id="module-nagparser.Model.Nag">
+<span id="main-classes"></span><h3>Main Classes<a class="headerlink" href="#module-nagparser.Model.Nag" title="Link to this heading">¶</a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="nagparser.Model.Nag.Nag">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nagparser.Model.Nag.</span></span><span class="sig-name descname"><span class="pre">Nag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nagparser.Model.Nag.Nag" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Base</span></code></p>
+<p>Top-level container object for all parsed Nagios data.</p>
+<p>The Nag object is the main entry point for accessing parsed Nagios data.
+It contains all hosts, services, and service groups parsed from the Nagios
+status.dat and objects.cache files. It inherits from Base, which provides
+common functionality shared across all Nagios objects.</p>
+<dl>
+<dt>Attributes:</dt><dd><p>hosts (NagList): List of Host objects parsed from the data files
+services (NagList): List of Service objects parsed from the data files
+servicegroups (NagList): List of ServiceGroup objects (read-only property)
+config (NagConfig): Configuration object used for parsing
+importantservicegroups: Dictionary of service groups marked as important
+last_command_check (int): Timestamp of the last command check</p>
+</dd>
+<dt>Properties:</dt><dd><p>generated (datetime): When the Nagios data was generated
+lastupdated (datetime): When the Nagios data was last updated
+status (tuple): Aggregated status across all service groups
+servicegroups (NagList): All service groups including synthetic groups</p>
+</dd>
+<dt>Example:</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">nagparser</span> <span class="kn">import</span> <span class="n">parse</span><span class="p">,</span> <span class="n">NagConfig</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">config</span> <span class="o">=</span> <span class="n">NagConfig</span><span class="p">(</span><span class="n">files</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;objects.cache&#39;</span><span class="p">,</span> <span class="s1">&#39;status.dat&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nag</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hosts: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">nag</span><span class="o">.</span><span class="n">hosts</span><span class="p">)</span><span class="si">}</span><span class="s2">, Services: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">nag</span><span class="o">.</span><span class="n">services</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Data generated: </span><span class="si">{</span><span class="n">nag</span><span class="o">.</span><span class="n">generated</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">status</span><span class="p">,</span> <span class="n">in_downtime</span> <span class="o">=</span> <span class="n">nag</span><span class="o">.</span><span class="n">status</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Overall status: </span><span class="si">{</span><span class="n">status</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
 </div>
+</dd>
+</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="nagparser.Model.Nag.Nag.generated">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">generated</span></span><a class="headerlink" href="#nagparser.Model.Nag.Nag.generated" title="Link to this definition">¶</a></dt>
+<dd><p>Get the datetime when this Nagios data was generated.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>datetime: The generation timestamp from the Nagios data file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nagparser.Model.Nag.Nag.getbadhosts">
+<span class="sig-name descname"><span class="pre">getbadhosts</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nagparser.Model.Nag.Nag.getbadhosts" title="Link to this definition">¶</a></dt>
+<dd><p>Get all hosts with non-OK status.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>NagList: List of Host objects that have a non-OK status</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nagparser.Model.Nag.Nag.getservicegroups">
+<span class="sig-name descname"><span class="pre">getservicegroups</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">onlyimportant</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nagparser.Model.Nag.Nag.getservicegroups" title="Link to this definition">¶</a></dt>
+<dd><p>Get service groups, optionally filtered to only important ones.</p>
+<p>This method returns service groups from the Nagios data. When onlyimportant
+is False, it also creates two synthetic service groups: ‘noservicegroup’ for
+services not in any group, and ‘allservices’ containing all services.
+Results are cached for performance.</p>
+<dl>
+<dt>Args:</dt><dd><dl class="simple">
+<dt>onlyimportant (bool): If True, return only service groups marked as important</dt><dd><p>in the configuration. If False, return all service groups
+plus synthetic groups for ungrouped and all services.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>NagList: List of ServiceGroup objects</p>
+</dd>
+<dt>Example:</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">nag</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">all_groups</span> <span class="o">=</span> <span class="n">nag</span><span class="o">.</span><span class="n">getservicegroups</span><span class="p">(</span><span class="n">onlyimportant</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">important_groups</span> <span class="o">=</span> <span class="n">nag</span><span class="o">.</span><span class="n">getservicegroups</span><span class="p">(</span><span class="n">onlyimportant</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nagparser.Model.Nag.Nag.getstatus">
+<span class="sig-name descname"><span class="pre">getstatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">onlyimportant</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nagparser.Model.Nag.Nag.getstatus" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nagparser.Model.Nag.Nag.laststatuschange">
+<span class="sig-name descname"><span class="pre">laststatuschange</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">returntimesincenow</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nagparser.Model.Nag.Nag.laststatuschange" title="Link to this definition">¶</a></dt>
+<dd><p>Get the most recent status change time across all services.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>returntimesincenow (bool): If True, return human-readable time difference.</dt><dd><p>If False, return datetime object.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>str or datetime: Human-readable time string (e.g., “2h 30m”) if </dt><dd><p>returntimesincenow is True, otherwise datetime object.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nagparser.Model.Nag.Nag.lastupdated">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">lastupdated</span></span><a class="headerlink" href="#nagparser.Model.Nag.Nag.lastupdated" title="Link to this definition">¶</a></dt>
+<dd><p>Get the datetime when Nagios last checked commands.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>datetime: The last command check timestamp from the Nagios data</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nagparser.Model.Nag.Nag.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#nagparser.Model.Nag.Nag.name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nagparser.Model.Nag.Nag.servicegroups">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">servicegroups</span></span><a class="headerlink" href="#nagparser.Model.Nag.Nag.servicegroups" title="Link to this definition">¶</a></dt>
+<dd><p>Get all service groups including synthetic groups.</p>
+<p>This is a convenience property that calls getservicegroups(onlyimportant=False).</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>NagList: All service groups plus ‘noservicegroup’ and ‘allservices’ groups</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nagparser.Model.Nag.Nag.status">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">status</span></span><a class="headerlink" href="#nagparser.Model.Nag.Nag.status" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-nagparser.Model.Host">
+<dt class="sig sig-object py" id="nagparser.Model.Host.Host">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nagparser.Model.Host.</span></span><span class="sig-name descname"><span class="pre">Host</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nag</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nagparser.Model.Host.Host" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Base</span></code></p>
+<p>Represents a host definition from Nagios status.dat.</p>
+<p>A Host object contains information about a single monitored host and provides
+access to all services running on that host. It inherits from Base, which
+provides common functionality like status aggregation and command execution.</p>
+<dl>
+<dt>Attributes:</dt><dd><p>host_name (str): The unique name of this host
+nag (Nag): Reference to the parent Nag object</p>
+</dd>
+<dt>Properties:</dt><dd><p>services (NagList): All services associated with this host
+name (str): Alias for host_name
+status (tuple): Aggregated status tuple (status_str, in_downtime_bool)</p>
+</dd>
+<dt>Example:</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">host</span> <span class="o">=</span> <span class="n">nag</span><span class="o">.</span><span class="n">hosts</span><span class="o">.</span><span class="n">first</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Host: </span><span class="si">{</span><span class="n">host</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">service</span> <span class="ow">in</span> <span class="n">host</span><span class="o">.</span><span class="n">services</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Service: </span><span class="si">{</span><span class="n">service</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">, Status: </span><span class="si">{</span><span class="n">service</span><span class="o">.</span><span class="n">status</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="nagparser.Model.Host.Host.getstatus">
+<span class="sig-name descname"><span class="pre">getstatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">arg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nagparser.Model.Host.Host.getstatus" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nagparser.Model.Host.Host.laststatuschange">
+<span class="sig-name descname"><span class="pre">laststatuschange</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">returntimesincenow</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nagparser.Model.Host.Host.laststatuschange" title="Link to this definition">¶</a></dt>
+<dd><p>Get the most recent status change time among this host’s services.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>returntimesincenow (bool): If True, return human-readable time difference.</dt><dd><p>If False, return datetime object.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>str or datetime: Human-readable time string (e.g., “2h 30m”) if </dt><dd><p>returntimesincenow is True, otherwise datetime object.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nagparser.Model.Host.Host.name">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#nagparser.Model.Host.Host.name" title="Link to this definition">¶</a></dt>
+<dd><p>Get the name of this host.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>str: The host_name attribute</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nagparser.Model.Host.Host.services">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">services</span></span><a class="headerlink" href="#nagparser.Model.Host.Host.services" title="Link to this definition">¶</a></dt>
+<dd><p>Get all services associated with this host.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>NagList: List of Service objects running on this host</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nagparser.Model.Host.Host.status">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">status</span></span><a class="headerlink" href="#nagparser.Model.Host.Host.status" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-nagparser.Model.Service">
+<dt class="sig sig-object py" id="nagparser.Model.Service.Service">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nagparser.Model.Service.</span></span><span class="sig-name descname"><span class="pre">Service</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nag</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nagparser.Model.Service.Service" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Base</span></code></p>
+<p>Represents a service definition from Nagios status.dat.</p>
+<p>A Service object contains detailed information about a monitored service,
+including its current state, check status, and scheduling information.
+Services are associated with a Host and can belong to multiple ServiceGroups.</p>
+<dl>
+<dt>Attributes:</dt><dd><p>host_name (str): Name of the host this service runs on
+service_description (str): Description of this service
+last_state_change (int): Timestamp of the last status change
+active_checks_enabled (int): Whether active checks are enabled (1/0)
+current_state (int): Current state code (0=OK, 1=WARNING, 2=CRITICAL, 3+=UNKNOWN)
+next_check (int): Timestamp of the next scheduled check
+scheduled_downtime_depth (int): Depth of scheduled downtime (&gt;0 means in downtime)
+state_type (int): State type (0=SOFT, 1=HARD)
+nag (Nag): Reference to the parent Nag object</p>
+</dd>
+<dt>Properties:</dt><dd><p>host (Host): The Host object this service belongs to
+name (str): Alias for service_description
+status (tuple): Status tuple (status_str, in_downtime_bool) where status_str is one of: ‘ok’, ‘warning’, ‘critical’, ‘unknown’, ‘stale’
+servicegroups (NagList): List of ServiceGroup objects this service belongs to</p>
+</dd>
+<dt>Example:</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">service</span> <span class="o">=</span> <span class="n">nag</span><span class="o">.</span><span class="n">services</span><span class="o">.</span><span class="n">first</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Service: </span><span class="si">{</span><span class="n">service</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> on </span><span class="si">{</span><span class="n">service</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">status</span><span class="p">,</span> <span class="n">in_downtime</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">status</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Status: </span><span class="si">{</span><span class="n">status</span><span class="si">}</span><span class="s2">, In downtime: </span><span class="si">{</span><span class="n">in_downtime</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="nagparser.Model.Service.Service.getstatus">
+<span class="sig-name descname"><span class="pre">getstatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">arg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nagparser.Model.Service.Service.getstatus" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate the current status of this service.</p>
+<p>Determines the service status based on current_state, taking into account
+configuration options like STALE_THRESHOLD, REQUIRE_HARD_SERVICE_STATUS,
+and scheduled downtime.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>tuple: (status_str, in_downtime_bool) where:</dt><dd><ul class="simple">
+<li><p>status_str is one of: ‘ok’, ‘warning’, ‘critical’, ‘unknown’, ‘stale’</p></li>
+<li><p>in_downtime_bool is True if scheduled_downtime_depth &gt; 0</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt>Note:</dt><dd><ul class="simple">
+<li><p>A service is ‘stale’ if it hasn’t been checked recently (based on STALE_THRESHOLD)</p></li>
+<li><p>Soft states are treated as ‘ok’ if REQUIRE_HARD_SERVICE_STATUS is True</p></li>
+<li><p>State codes: 0=OK, 1=WARNING, 2=CRITICAL, &gt;2=UNKNOWN</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nagparser.Model.Service.Service.host">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">host</span></span><a class="headerlink" href="#nagparser.Model.Service.Service.host" title="Link to this definition">¶</a></dt>
+<dd><p>Get the Host object this service runs on.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>Host: The Host object with matching host_name, or None if not found</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nagparser.Model.Service.Service.laststatuschange">
+<span class="sig-name descname"><span class="pre">laststatuschange</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">returntimesincenow</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nagparser.Model.Service.Service.laststatuschange" title="Link to this definition">¶</a></dt>
+<dd><p>Get the time of the last status change for this service.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>returntimesincenow (bool): If True, return human-readable time difference.</dt><dd><p>If False, return datetime object.</p>
+</dd>
+<dt>timestamp (int, optional): Unix timestamp to use instead of last_state_change.</dt><dd><p>Useful for calculating time from a specific point.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>str or datetime: Human-readable time string (e.g., “2h 30m”) if </dt><dd><p>returntimesincenow is True, otherwise datetime object.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nagparser.Model.Service.Service.name">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#nagparser.Model.Service.Service.name" title="Link to this definition">¶</a></dt>
+<dd><p>Get the name of this service.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>str: The service_description attribute</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nagparser.Model.Service.Service.servicegroups">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">servicegroups</span></span><a class="headerlink" href="#nagparser.Model.Service.Service.servicegroups" title="Link to this definition">¶</a></dt>
+<dd><p>Get all service groups this service belongs to.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>NagList: List of ServiceGroup objects that contain this service</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nagparser.Model.Service.Service.status">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">status</span></span><a class="headerlink" href="#nagparser.Model.Service.Service.status" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate the current status of this service.</p>
+<p>Determines the service status based on current_state, taking into account
+configuration options like STALE_THRESHOLD, REQUIRE_HARD_SERVICE_STATUS,
+and scheduled downtime.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>tuple: (status_str, in_downtime_bool) where:</dt><dd><ul class="simple">
+<li><p>status_str is one of: ‘ok’, ‘warning’, ‘critical’, ‘unknown’, ‘stale’</p></li>
+<li><p>in_downtime_bool is True if scheduled_downtime_depth &gt; 0</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt>Note:</dt><dd><ul class="simple">
+<li><p>A service is ‘stale’ if it hasn’t been checked recently (based on STALE_THRESHOLD)</p></li>
+<li><p>Soft states are treated as ‘ok’ if REQUIRE_HARD_SERVICE_STATUS is True</p></li>
+<li><p>State codes: 0=OK, 1=WARNING, 2=CRITICAL, &gt;2=UNKNOWN</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-nagparser.Model.ServiceGroup">
+<dt class="sig sig-object py" id="nagparser.Model.ServiceGroup.ServiceGroup">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nagparser.Model.ServiceGroup.</span></span><span class="sig-name descname"><span class="pre">ServiceGroup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nag</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nagparser.Model.ServiceGroup.ServiceGroup" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Base</span></code></p>
+<p>Represents a service group definition from Nagios objects.cache.</p>
+<p>A ServiceGroup is a logical grouping of services, typically used to organize
+related services for easier monitoring and reporting. Service groups can span
+multiple hosts and contain any number of services.</p>
+<dl>
+<dt>Attributes:</dt><dd><p>servicegroup_name (str): Unique identifier for this service group
+alias (str): Human-readable name for this service group
+members (str): Comma-separated list of host,service pairs
+nag (Nag): Reference to the parent Nag object</p>
+</dd>
+<dt>Properties:</dt><dd><p>name (str): Alias for the alias attribute
+services (NagList): All services in this group
+hosts (NagList): All hosts that have services in this group
+status (tuple): Aggregated status tuple (status_str, in_downtime_bool)</p>
+</dd>
+<dt>Example:</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">sg</span> <span class="ow">in</span> <span class="n">nag</span><span class="o">.</span><span class="n">servicegroups</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">status</span><span class="p">,</span> <span class="n">in_downtime</span> <span class="o">=</span> <span class="n">sg</span><span class="o">.</span><span class="n">status</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">sg</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">status</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">sg</span><span class="o">.</span><span class="n">services</span><span class="p">)</span><span class="si">}</span><span class="s2"> services)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="nagparser.Model.ServiceGroup.ServiceGroup.gethostsandservices">
+<span class="sig-name descname"><span class="pre">gethostsandservices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nagparser.Model.ServiceGroup.ServiceGroup.gethostsandservices" title="Link to this definition">¶</a></dt>
+<dd><p>Parse the members string to extract hosts and services.</p>
+<p>The members attribute is a comma-separated string of alternating host names
+and service descriptions. This method parses that string and returns the
+corresponding Host and Service objects. Results are cached for performance.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>tuple: (services_list, hosts_list) where both are lists of unique objects</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nagparser.Model.ServiceGroup.ServiceGroup.getstatus">
+<span class="sig-name descname"><span class="pre">getstatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">arg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nagparser.Model.ServiceGroup.ServiceGroup.getstatus" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nagparser.Model.ServiceGroup.ServiceGroup.hosts">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">hosts</span></span><a class="headerlink" href="#nagparser.Model.ServiceGroup.ServiceGroup.hosts" title="Link to this definition">¶</a></dt>
+<dd><p>Get all hosts that have services in this service group.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>NagList: List of unique Host objects with services in this group</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nagparser.Model.ServiceGroup.ServiceGroup.laststatuschange">
+<span class="sig-name descname"><span class="pre">laststatuschange</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">returntimesincenow</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nagparser.Model.ServiceGroup.ServiceGroup.laststatuschange" title="Link to this definition">¶</a></dt>
+<dd><p>Get the most recent status change time among services in this group.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>returntimesincenow (bool): If True, return human-readable time difference.</dt><dd><p>If False, return datetime object.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>str or datetime: Human-readable time string (e.g., “2h 30m”) if </dt><dd><p>returntimesincenow is True, otherwise datetime object.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nagparser.Model.ServiceGroup.ServiceGroup.name">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#nagparser.Model.ServiceGroup.ServiceGroup.name" title="Link to this definition">¶</a></dt>
+<dd><p>Get the name of this service group.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>str: The alias attribute (human-readable name)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nagparser.Model.ServiceGroup.ServiceGroup.services">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">services</span></span><a class="headerlink" href="#nagparser.Model.ServiceGroup.ServiceGroup.services" title="Link to this definition">¶</a></dt>
+<dd><p>Get all services in this service group.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>NagList: List of Service objects that belong to this group</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nagparser.Model.ServiceGroup.ServiceGroup.status">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">status</span></span><a class="headerlink" href="#nagparser.Model.ServiceGroup.ServiceGroup.status" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-nagparser.Model.NagList">
+<dt class="sig sig-object py" id="nagparser.Model.NagList.NagList">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nagparser.Model.NagList.</span></span><span class="sig-name descname"><span class="pre">NagList</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nagparser.Model.NagList.NagList" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></p>
+<p>Enhanced list class with convenience methods for Nagios objects.</p>
+<p>NagList extends Python’s built-in list to provide convenient attribute-based
+access to Nagios objects. It allows accessing items by name and provides
+special properties for common operations.</p>
+<dl>
+<dt>Properties:</dt><dd><p>first: Returns the first item in the list, or None if empty
+names: Returns a list of names of all items in the list</p>
+</dd>
+<dt>Attribute Access:</dt><dd><p>Items can be accessed by their ‘name’ attribute using dot notation.
+If multiple items have the same name, an AttributeError is raised.</p>
+</dd>
+<dt>Example:</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">hosts</span> <span class="o">=</span> <span class="n">nag</span><span class="o">.</span><span class="n">hosts</span>  <span class="c1"># hosts is a NagList</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">first_host</span> <span class="o">=</span> <span class="n">hosts</span><span class="o">.</span><span class="n">first</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">host_names</span> <span class="o">=</span> <span class="n">hosts</span><span class="o">.</span><span class="n">names</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">specific_host</span> <span class="o">=</span> <span class="n">hosts</span><span class="o">.</span><span class="n">webserver</span>  <span class="c1"># Access by name</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-nagparser.Model.NagConfig">
+<span id="configuration"></span><h3>Configuration<a class="headerlink" href="#module-nagparser.Model.NagConfig" title="Link to this heading">¶</a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="nagparser.Model.NagConfig.NagConfig">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nagparser.Model.NagConfig.</span></span><span class="sig-name descname"><span class="pre">NagConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">files</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nagparser.Model.NagConfig.NagConfig" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Configuration class for NagParser.</p>
+<p>Stores configuration settings for parsing Nagios data files and controlling
+how status information is interpreted. This includes file paths, thresholds,
+API keys, and various behavioral options.</p>
+<dl>
+<dt>Attributes:</dt><dd><p>files (list): List of file paths to parse (status.dat and/or objects.cache)
+STALE_THRESHOLD (int): Number of seconds after which data is considered stale (default: 240)
+IGNORE_STALE_DATA (bool): If True, stale data won’t affect status calculations (default: False)
+NAGIOS_CMD_FILE (str): Path to Nagios command file (default: ‘/var/lib/nagios3/rw/nagios.cmd’)
+IMPORTANTSERVICEGROUPS (dict): Dictionary of important service groups
+DATETIME_FORMAT (str): Format string for datetime output (default: ‘%Y-%m-%d %H:%M:%S’)
+REQUIRE_HARD_SERVICE_STATUS (bool): If True, only consider hard states for status (default: False)
+basicAPIKEYS (list): List of API keys for basic authentication</p>
+</dd>
+<dt>Args:</dt><dd><p>files (list): List of file paths to Nagios data files</p>
+</dd>
+<dt>Raises:</dt><dd><p>IOError: If any of the specified files don’t exist</p>
+</dd>
+<dt>Example:</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">config</span> <span class="o">=</span> <span class="n">NagConfig</span><span class="p">(</span><span class="n">files</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;/var/lib/nagios3/objects.cache&#39;</span><span class="p">,</span>
+<span class="gp">... </span>                          <span class="s1">&#39;/var/lib/nagios3/status.dat&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">config</span><span class="o">.</span><span class="n">STALE_THRESHOLD</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">config</span><span class="o">.</span><span class="n">APIKEYS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;secret-key-123&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="nagparser.Model.NagConfig.NagConfig.APIKEYS">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">APIKEYS</span></span><a class="headerlink" href="#nagparser.Model.NagConfig.NagConfig.APIKEYS" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nagparser.Model.NagConfig.NagConfig.getpermissions">
+<span class="sig-name descname"><span class="pre">getpermissions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">apikey</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nagparser.Model.NagConfig.NagConfig.getpermissions" title="Link to this definition">¶</a></dt>
+<dd><p>Check if an API key is valid and return permissions.</p>
+<p>Basic API key validation function. Can be overridden in subclasses to provide
+custom API key validation functionality. Currently returns a simple list with
+‘access granted’ for valid keys or an empty list for invalid keys.</p>
+<dl>
+<dt>Args:</dt><dd><p>apikey (str): The API key to validate</p>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>list: List of permission strings. Returns [‘access granted’] for valid keys,</dt><dd><p>empty list [] for invalid keys. Future versions may use more granular
+permissions to restrict access to specific operations.</p>
+</dd>
+</dl>
+</dd>
+<dt>Example:</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">config</span> <span class="o">=</span> <span class="n">NagConfig</span><span class="p">(</span><span class="n">files</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;status.dat&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">config</span><span class="o">.</span><span class="n">APIKEYS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;valid-key&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">config</span><span class="o">.</span><span class="n">getpermissions</span><span class="p">(</span><span class="s1">&#39;valid-key&#39;</span><span class="p">)</span>
+<span class="go">[&#39;access granted&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">config</span><span class="o">.</span><span class="n">getpermissions</span><span class="p">(</span><span class="s1">&#39;invalid-key&#39;</span><span class="p">)</span>
+<span class="go">[]</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-nagparser.Services.nagfactory">
+<span id="services-and-utilities"></span><h3>Services and Utilities<a class="headerlink" href="#module-nagparser.Services.nagfactory" title="Link to this heading">¶</a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="nagparser.Services.nagfactory.parse">
+<span class="sig-prename descclassname"><span class="pre">nagparser.Services.nagfactory.</span></span><span class="sig-name descname"><span class="pre">parse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nagparser.Services.nagfactory.parse" title="Link to this definition">¶</a></dt>
+<dd><p>Parse Nagios status and cache files into a Nag object.</p>
+<p>This is the main entry point for NagParser. It reads Nagios runtime data from
+status.dat and objects.cache files and constructs a hierarchical object structure
+containing hosts, services, and service groups.</p>
+<dl>
+<dt>Args:</dt><dd><dl class="simple">
+<dt>config (NagConfig): Configuration object containing file paths and options.</dt><dd><p>Must have a ‘files’ attribute with paths to status.dat
+and/or objects.cache files.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>Nag: A Nag object containing all parsed hosts, services, and service groups.</dt><dd><p>The returned object provides access to:
+- nag.hosts: NagList of Host objects
+- nag.services: NagList of Service objects
+- nag.servicegroups: NagList of ServiceGroup objects</p>
+</dd>
+</dl>
+</dd>
+<dt>Raises:</dt><dd><p>Exception: If an invalid filename is detected (must contain ‘.cache’ or ‘.dat’)
+IOError: If specified files don’t exist (raised by NagConfig)</p>
+</dd>
+<dt>Example:</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">nagparser</span> <span class="kn">import</span> <span class="n">parse</span><span class="p">,</span> <span class="n">NagConfig</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">config</span> <span class="o">=</span> <span class="n">NagConfig</span><span class="p">(</span><span class="n">files</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;/var/lib/nagios3/objects.cache&#39;</span><span class="p">,</span>
+<span class="gp">... </span>                          <span class="s1">&#39;/var/lib/nagios3/status.dat&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nag</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">nag</span><span class="o">.</span><span class="n">hosts</span><span class="p">)</span><span class="si">}</span><span class="s2"> hosts and </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">nag</span><span class="o">.</span><span class="n">services</span><span class="p">)</span><span class="si">}</span><span class="s2"> services&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function" id="module-nagparser.Services.nicetime">
+<dt class="sig sig-object py" id="nagparser.Services.nicetime.getdatetimefromnicetime">
+<span class="sig-prename descclassname"><span class="pre">nagparser.Services.nicetime.</span></span><span class="sig-name descname"><span class="pre">getdatetimefromnicetime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nicetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">basedatetime</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nagparser.Services.nicetime.getdatetimefromnicetime" title="Link to this definition">¶</a></dt>
+<dd><p>Convert a human-readable time string to a datetime object.</p>
+<p>Parses a string like “1d 2h 30m” or “5h:30m:15s” and adds that duration
+to a base datetime (or current time if not specified).</p>
+<dl>
+<dt>Args:</dt><dd><dl class="simple">
+<dt>nicetime (str): Time string with units (d=days, h=hours, m=minutes, s=seconds).</dt><dd><p>Can be space-separated (e.g., “1d 2h”) or colon-separated (e.g., “2:30:15”).</p>
+</dd>
+<dt>basedatetime (datetime, optional): The base datetime to add the duration to.</dt><dd><p>Defaults to datetime.now() if not provided.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>datetime: The result of adding the parsed duration to the base datetime.</p>
+</dd>
+<dt>Example:</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">base</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">getdatetimefromnicetime</span><span class="p">(</span><span class="s2">&quot;1d 2h 30m&quot;</span><span class="p">,</span> <span class="n">base</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="go">2023-01-02 14:30:00</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nagparser.Services.nicetime.getnicetimefromdatetime">
+<span class="sig-prename descclassname"><span class="pre">nagparser.Services.nicetime.</span></span><span class="sig-name descname"><span class="pre">getnicetimefromdatetime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datetimeinput</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">basedatetime</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nagparser.Services.nicetime.getnicetimefromdatetime" title="Link to this definition">¶</a></dt>
+<dd><p>Convert a datetime to a human-readable time difference string.</p>
+<p>Calculates the time difference between a given datetime and a base datetime
+(or current time if not specified) and returns it as a human-readable string
+like “2d 3h”, “5h 30m”, “45m 12s”, or “30s”.</p>
+<dl>
+<dt>Args:</dt><dd><p>datetimeinput (datetime): The datetime to convert to a nice time string
+basedatetime (datetime, optional): The base datetime to compare against. Defaults to datetime.now() if not provided.</p>
+</dd>
+<dt>Returns:</dt><dd><p>str: Human-readable time difference string formatted as “Xd Xh” if days &gt; 0, “Xh Xm” if hours &gt; 0 (and days == 0), “Xm Xs” if minutes &gt; 0 (and hours == 0), or “Xs” if only seconds</p>
+</dd>
+<dt>Example:</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">past_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">minutes</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">getnicetimefromdatetime</span><span class="p">(</span><span class="n">past_time</span><span class="p">)</span>
+<span class="go">&#39;2h 30m&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">past_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">hours</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">getnicetimefromdatetime</span><span class="p">(</span><span class="n">past_time</span><span class="p">)</span>
+<span class="go">&#39; 1d  5h&#39;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
-            <h3><a href="#">Table Of Contents</a></h3>
-            <ul>
-<li><a class="reference external" href="#">Welcome to NagParser&#8217;s documentation!</a><ul>
+  <div>
+    <h3><a href="#">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Welcome to NagParser’s documentation!</a><ul>
+<li><a class="reference internal" href="#key-features">Key Features</a></li>
+<li><a class="reference internal" href="#quick-start">Quick Start</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#basic-usage">Basic Usage</a></li>
+<li><a class="reference internal" href="#working-with-service-groups">Working with Service Groups</a></li>
+<li><a class="reference internal" href="#filtering-services-by-status">Filtering Services by Status</a></li>
+<li><a class="reference internal" href="#configuration-options">Configuration Options</a></li>
+<li><a class="reference internal" href="#working-with-timestamps">Working with Timestamps</a></li>
 </ul>
 </li>
-<li><a class="reference external" href="#indices-and-tables">Indices and tables</a></li>
+<li><a class="reference internal" href="#api-reference">API Reference</a><ul>
+<li><a class="reference internal" href="#module-nagparser.Model.Nag">Main Classes</a><ul>
+<li><a class="reference internal" href="#nagparser.Model.Nag.Nag"><code class="docutils literal notranslate"><span class="pre">Nag</span></code></a><ul>
+<li><a class="reference internal" href="#nagparser.Model.Nag.Nag.generated"><code class="docutils literal notranslate"><span class="pre">Nag.generated</span></code></a></li>
+<li><a class="reference internal" href="#nagparser.Model.Nag.Nag.getbadhosts"><code class="docutils literal notranslate"><span class="pre">Nag.getbadhosts()</span></code></a></li>
+<li><a class="reference internal" href="#nagparser.Model.Nag.Nag.getservicegroups"><code class="docutils literal notranslate"><span class="pre">Nag.getservicegroups()</span></code></a></li>
+<li><a class="reference internal" href="#nagparser.Model.Nag.Nag.getstatus"><code class="docutils literal notranslate"><span class="pre">Nag.getstatus()</span></code></a></li>
+<li><a class="reference internal" href="#nagparser.Model.Nag.Nag.laststatuschange"><code class="docutils literal notranslate"><span class="pre">Nag.laststatuschange()</span></code></a></li>
+<li><a class="reference internal" href="#nagparser.Model.Nag.Nag.lastupdated"><code class="docutils literal notranslate"><span class="pre">Nag.lastupdated</span></code></a></li>
+<li><a class="reference internal" href="#nagparser.Model.Nag.Nag.name"><code class="docutils literal notranslate"><span class="pre">Nag.name</span></code></a></li>
+<li><a class="reference internal" href="#nagparser.Model.Nag.Nag.servicegroups"><code class="docutils literal notranslate"><span class="pre">Nag.servicegroups</span></code></a></li>
+<li><a class="reference internal" href="#nagparser.Model.Nag.Nag.status"><code class="docutils literal notranslate"><span class="pre">Nag.status</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nagparser.Model.Host.Host"><code class="docutils literal notranslate"><span class="pre">Host</span></code></a><ul>
+<li><a class="reference internal" href="#nagparser.Model.Host.Host.getstatus"><code class="docutils literal notranslate"><span class="pre">Host.getstatus()</span></code></a></li>
+<li><a class="reference internal" href="#nagparser.Model.Host.Host.laststatuschange"><code class="docutils literal notranslate"><span class="pre">Host.laststatuschange()</span></code></a></li>
+<li><a class="reference internal" href="#nagparser.Model.Host.Host.name"><code class="docutils literal notranslate"><span class="pre">Host.name</span></code></a></li>
+<li><a class="reference internal" href="#nagparser.Model.Host.Host.services"><code class="docutils literal notranslate"><span class="pre">Host.services</span></code></a></li>
+<li><a class="reference internal" href="#nagparser.Model.Host.Host.status"><code class="docutils literal notranslate"><span class="pre">Host.status</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nagparser.Model.Service.Service"><code class="docutils literal notranslate"><span class="pre">Service</span></code></a><ul>
+<li><a class="reference internal" href="#nagparser.Model.Service.Service.getstatus"><code class="docutils literal notranslate"><span class="pre">Service.getstatus()</span></code></a></li>
+<li><a class="reference internal" href="#nagparser.Model.Service.Service.host"><code class="docutils literal notranslate"><span class="pre">Service.host</span></code></a></li>
+<li><a class="reference internal" href="#nagparser.Model.Service.Service.laststatuschange"><code class="docutils literal notranslate"><span class="pre">Service.laststatuschange()</span></code></a></li>
+<li><a class="reference internal" href="#nagparser.Model.Service.Service.name"><code class="docutils literal notranslate"><span class="pre">Service.name</span></code></a></li>
+<li><a class="reference internal" href="#nagparser.Model.Service.Service.servicegroups"><code class="docutils literal notranslate"><span class="pre">Service.servicegroups</span></code></a></li>
+<li><a class="reference internal" href="#nagparser.Model.Service.Service.status"><code class="docutils literal notranslate"><span class="pre">Service.status</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nagparser.Model.ServiceGroup.ServiceGroup"><code class="docutils literal notranslate"><span class="pre">ServiceGroup</span></code></a><ul>
+<li><a class="reference internal" href="#nagparser.Model.ServiceGroup.ServiceGroup.gethostsandservices"><code class="docutils literal notranslate"><span class="pre">ServiceGroup.gethostsandservices()</span></code></a></li>
+<li><a class="reference internal" href="#nagparser.Model.ServiceGroup.ServiceGroup.getstatus"><code class="docutils literal notranslate"><span class="pre">ServiceGroup.getstatus()</span></code></a></li>
+<li><a class="reference internal" href="#nagparser.Model.ServiceGroup.ServiceGroup.hosts"><code class="docutils literal notranslate"><span class="pre">ServiceGroup.hosts</span></code></a></li>
+<li><a class="reference internal" href="#nagparser.Model.ServiceGroup.ServiceGroup.laststatuschange"><code class="docutils literal notranslate"><span class="pre">ServiceGroup.laststatuschange()</span></code></a></li>
+<li><a class="reference internal" href="#nagparser.Model.ServiceGroup.ServiceGroup.name"><code class="docutils literal notranslate"><span class="pre">ServiceGroup.name</span></code></a></li>
+<li><a class="reference internal" href="#nagparser.Model.ServiceGroup.ServiceGroup.services"><code class="docutils literal notranslate"><span class="pre">ServiceGroup.services</span></code></a></li>
+<li><a class="reference internal" href="#nagparser.Model.ServiceGroup.ServiceGroup.status"><code class="docutils literal notranslate"><span class="pre">ServiceGroup.status</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nagparser.Model.NagList.NagList"><code class="docutils literal notranslate"><span class="pre">NagList</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-nagparser.Model.NagConfig">Configuration</a><ul>
+<li><a class="reference internal" href="#nagparser.Model.NagConfig.NagConfig"><code class="docutils literal notranslate"><span class="pre">NagConfig</span></code></a><ul>
+<li><a class="reference internal" href="#nagparser.Model.NagConfig.NagConfig.APIKEYS"><code class="docutils literal notranslate"><span class="pre">NagConfig.APIKEYS</span></code></a></li>
+<li><a class="reference internal" href="#nagparser.Model.NagConfig.NagConfig.getpermissions"><code class="docutils literal notranslate"><span class="pre">NagConfig.getpermissions()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-nagparser.Services.nagfactory">Services and Utilities</a><ul>
+<li><a class="reference internal" href="#nagparser.Services.nagfactory.parse"><code class="docutils literal notranslate"><span class="pre">parse()</span></code></a></li>
+<li><a class="reference internal" href="#nagparser.Services.nicetime.getdatetimefromnicetime"><code class="docutils literal notranslate"><span class="pre">getdatetimefromnicetime()</span></code></a></li>
+<li><a class="reference internal" href="#nagparser.Services.nicetime.getnicetimefromdatetime"><code class="docutils literal notranslate"><span class="pre">getnicetimefromdatetime()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
 </ul>
 
-            <h3>This Page</h3>
-            <ul class="this-page-menu">
-              <li><a href="_sources/index.txt"
-                     rel="nofollow">Show Source</a></li>
-            </ul>
-          <div id="searchbox" style="display: none">
-            <h3>Quick search</h3>
-              <form class="search" action="search.html" method="get">
-                <input type="text" name="q" size="18" />
-                <input type="submit" value="Go" />
-                <input type="hidden" name="check_keywords" value="yes" />
-                <input type="hidden" name="area" value="default" />
-              </form>
-              <p class="searchtip" style="font-size: 90%">
-              Enter search terms or a module, class or function name.
-              </p>
-          </div>
-          <script type="text/javascript">$('#searchbox').show(0);</script>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
-        <li><a href="#">NagParser v0.1.0 documentation</a> &raquo;</li> 
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">NagParser 0.1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Welcome to NagParser’s documentation!</a></li> 
       </ul>
     </div>
-    <div class="footer">
-      &copy; Copyright 2011, Matt Kennedy, Zeb Palmer.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.4.
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2011, Matt Kennedy, Zeb Palmer.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>
 </html>
