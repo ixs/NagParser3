@@ -46,7 +46,7 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install package with dev (Sphinx) dependencies
+      - name: Install package with docs (Sphinx) dependencies
         run: |
           pip install -U pip
           pip install -e .[docs]
