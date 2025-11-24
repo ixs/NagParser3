@@ -16,9 +16,6 @@ class TestUsageExamples:
         ]
         config = NagConfig(files=files)
         
-        # Configure options
-        config.APIKEYS = ['test', 'hi']
-        
         # Parse and get nag object
         nag = parse(config)
         
@@ -88,16 +85,6 @@ class TestUsageExamples:
         
         # Host should have services
         assert len(host.services) > 0
-
-    def test_api_key_validation(self, test_nagconfig):
-        """Test API key validation functionality."""
-        # Valid API key should grant access
-        permissions = test_nagconfig.getpermissions('abc123')
-        assert permissions == ['access granted']
-        
-        # Invalid API key should return empty list
-        permissions = test_nagconfig.getpermissions('invalid')
-        assert permissions == []
 
     def test_config_options(self, testdata_dir):
         """Test various configuration options."""

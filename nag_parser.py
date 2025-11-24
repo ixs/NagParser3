@@ -1,9 +1,5 @@
 #!/usr/bin/env python
 
-def examplegetpermissionssoverridefunction(apikey):
-    print("I'm in coolbeans")
-    return ['Cool Beans']
-
 import nagparser
 
 #Setup the config options
@@ -13,10 +9,7 @@ files = [basedir + 'test_objects.cache', basedir + 'test_status.dat']
 config = nagparser.NagConfig(files = files)
 
 #Extra config options
-config.APIKEYS = ['test', 'hi']
 config.NAGIOS_CMD_FILE = '/home/ARBFUND/mkennedy/nagios.cmd'
-
-#config.getpermissions = examplegetpermissionssoverridefunction
 
 #get the nag object
 nag = nagparser.parse(config)

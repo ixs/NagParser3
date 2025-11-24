@@ -18,7 +18,6 @@ def test_nagconfig(testdata_dir):
         os.path.join(testdata_dir, 'test_status.dat')
     ]
     nagconfig = NagConfig(files)
-    nagconfig.APIKEYS = ['abc123', '123abc']
     # Ignore stale data since we're using old timestamps in test data
     nagconfig.IGNORE_STALE_DATA = True
     return nagconfig
