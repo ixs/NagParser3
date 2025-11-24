@@ -12,7 +12,7 @@ setup(
     version=versionstr,
     author='Matt Kennedy & Zeb Palmer',
     author_email='zeb@zebpalmer.com',
-    packages=['nagparser', 'nagparser.Client', 'nagparser.Model', 'nagparser.Services', 'nagparser.Tests'],
+    packages=['nagparser', 'nagparser.Client', 'nagparser.Model', 'nagparser.Services'],
     #scripts=[ "bin/script.py"]
     url='http://github.com/zebpalmer/NagiosParser',
     license='GPLv3',

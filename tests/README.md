@@ -8,19 +8,19 @@ This directory contains the comprehensive pytest test suite for NagParser.
 
 ```bash
 # Run all tests
-pytest nagparser/Tests/
+pytest tests/
 
 # Run with verbose output
-pytest nagparser/Tests/ -v
+pytest tests/ -v
 
 # Run specific test file
-pytest nagparser/Tests/test_models.py
+pytest tests/test_models.py
 
 # Run specific test class
-pytest nagparser/Tests/test_models.py::TestHost
+pytest tests/test_models.py::TestHost
 
 # Run specific test
-pytest nagparser/Tests/test_models.py::TestHost::test_host_has_services
+pytest tests/test_models.py::TestHost::test_host_has_services
 ```
 
 ### Using tox
