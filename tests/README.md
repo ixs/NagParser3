@@ -59,24 +59,21 @@ tox -e py312 # Python 3.12
 - **BaseTests.py**: Base tests for Nag object (4 tests)
 
 ### Integration Tests
-- **test_integration_minimal.py**: Integration tests using minimal synthetic test data (13 tests)
+- **test_integration_minimal.py**: Integration tests using test data (13 tests)
+- **test_usage_examples.py**: End-to-end usage examples (8 tests)
 
 ### Test Data
 
-#### Original Test Data
+#### Test Data Files
 - **testdata/test_status.dat**: Full Nagios status file for comprehensive testing
 - **testdata/test_objects.cache**: Full Nagios objects cache for comprehensive testing
-
-#### Synthetic Test Data
-- **testdata/minimal_status.dat**: Minimal status file with OK, WARNING, and CRITICAL services
-- **testdata/minimal_objects.cache**: Minimal objects cache with test host and service definitions
 
 #### Expected Results
 - **ExpectedResults/nag_attributes.pickle**: Pickled expected results for validation
 
 ## Test Coverage
 
-The test suite includes 65 tests covering:
+The test suite includes 71 tests covering:
 - Configuration management
 - File parsing (status.dat and objects.cache)
 - Object model (Nag, Host, Service, ServiceGroup)
