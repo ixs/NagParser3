@@ -16,6 +16,22 @@ If you do make improvements, please contribute back to this project by submittin
 Feel free to contact us if you have any questions, see AUTHORS.txt for contact info.
 
 
+Installation
+""""""""""""""""
+
+For production use (no dependencies required - uses only Python standard library):
+
+.. code-block:: bash
+
+    pip install NagParser
+
+For development (includes testing tools):
+
+.. code-block:: bash
+
+    pip install -e ".[dev]"
+
+
 Documentation
 """"""""""""""""
 
