@@ -1,0 +1,67 @@
+name: Build and Deploy Docs
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - "docs/**"
+      - "nagtest/**"
+      - "pyproject.toml"
+      - ".github/workflows/docs.yml"
+  pull_request:
+    paths:
+      - "docs/**"
+      - "nagtest/**"
+      - "pyproject.toml"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build Sphinx Docs
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install package with dev (Sphinx) dependencies
+        run: |
+          pip install -U pip
+          pip install -e .[docs]
+
+      - name: Run doctests
+        working-directory: docs
+        run: make doctest
+
+      - name: Build documentation
+        working-directory: docs
+        run: make html
+
+      - name: Upload documentation artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: docs/_build/html
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Deploy
+        uses: actions/deploy-pages@v4
+
