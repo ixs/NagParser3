@@ -24,7 +24,7 @@ For questions, see `AUTHORS.txt` for contact information.
 ## Installation
 
 ### Production Use
-_No external dependencies — relies only on Python’s standard library:_
+_No external dependencies - relies only on Python's standard library:_
 
 ```bash
 pip install NagParser
